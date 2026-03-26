@@ -17,12 +17,15 @@ public class MouseManager : MonoBehaviour
     public Quaternion OriginRotation;
     public bool rested;
 
+    private LivesManager livescrip;
+
     void Start()
     {
         OriginRotation = SlimeTransform.rotation;
         OriginPosition = SlimeTransform.position;
         slimeRigidbody.isKinematic = true;
         rested = true;
+        livescrip = GameObject.Find("GameManager").GetComponent<LivesManager>();
     }
     // Update is called once per frame
     void Update()
@@ -62,6 +65,7 @@ public class MouseManager : MonoBehaviour
             SlimeTransform.position = OriginPosition;
             SlimeTransform.rotation = OriginRotation;
             rested = true;
+            livescrip.Lives--;
         }
     }
 }
