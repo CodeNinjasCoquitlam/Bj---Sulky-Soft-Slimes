@@ -1,33 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LivesManager : MonoBehaviour
 {
-    [Header("Lives")]
-    public int Lives;
-    [Header("Heart UI Objects")]
-    public GameObject[] Hearts;
-    public GameObject LivesContainer;
+    public int lives = 6;
+    public GameObject[] hearts;
 
-    private YouLose losescrip;
-    
-    
     public void RemoveLife()
     {
-        Lives -= 1;
-    }
-    void Start()
-    {
-        losescrip = GameObject.Find("GameManager").GetComponent<YouLose>();
-    }
+        lives -= 1;
 
-    
-    void Update()
-    {
-        if (Lives <= 0)
+        hearts[lives].SetActive(false);
+
+        if (lives <= 0)
         {
-            losescrip.YouDie();
+            this.gameObject.GetComponent<YouLose>().YouLoser();
         }
     }
 }
